@@ -106,4 +106,4 @@ Updated by every PR that delivers a milestone item (empty until milestone 1).
 
 | Item | Implementation | Tests | Documentation |
 | --- | --- | --- | --- |
-| — | — | — | — |
+| User documentation drafted (milestone 3 content, ahead of the site): en and pt-BR, the flows of `design/ux.md`, safety, automation, troubleshooting | `src/content/docs/{en,pt-br}/`, `src/content/docs/README.md` | — (site checks come with milestone 1) | `src/content/docs/README.md` |
