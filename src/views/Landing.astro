@@ -1,0 +1,155 @@
+---
+// The landing page, the same in every locale (src/pages/[index, pt-br/index]).
+import Screenshot from '../components/Screenshot.astro';
+import Base from '../layouts/Base.astro';
+import { localePath, translator, type Locale } from '../lib/i18n';
+import { LINKS } from '../site';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = translator(locale);
+const download = localePath(locale, 'download/', import.meta.env.BASE_URL);
+
+const steps = [
+  { id: 'design', scene: 'design' },
+  { id: 'check', scene: 'fire' },
+  { id: 'run', scene: 'produce' },
+] as const;
+
+const values = ['precision', 'free', 'safety'] as const;
+
+const road = [
+  { state: 'done', key: 'status.core' },
+  { state: 'done', key: 'status.import' },
+  { state: 'now', key: 'status.desktop' },
+  { state: 'next', key: 'status.v1' },
+  { state: 'later', key: 'status.remote' },
+] as const;
+
+const repos = [
+  { name: 'freekerf', href: LINKS.app, key: 'community.app' },
+  { name: 'conformance', href: LINKS.conformance, key: 'community.conformance' },
+  { name: 'design', href: LINKS.design, key: 'community.design' },
+  { name: 'library', href: LINKS.library, key: 'community.library' },
+  { name: 'website', href: LINKS.website, key: 'community.website' },
+] as const;
+---
+
+<Base locale={locale} page="" title={t('meta.title')} description={t('meta.description')}>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-text">
+      <p class="badge">{t('hero.badge')}</p>
+      <h1 id="hero-title">{t('hero.title')}</h1>
+      <p class="lead">{t('hero.lead')}</p>
+      <p class="actions">
+        <a class="btn btn-primary" href={download} data-testid="hero-download">{t('hero.download')}</a>
+        <a class="btn" href={LINKS.app} rel="external">{t('hero.source')}</a>
+      </p>
+    </div>
+    <div class="wrap hero-shot">
+      <div class="frame">
+        <Screenshot scene="layers" alt={t('hero.shot')} eager />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="steps-title">
+    <div class="wrap">
+      <h2 id="steps-title">{t('steps.title')}</h2>
+      <p class="section-lead">{t('steps.lead')}</p>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li class="step">
+              <div class="step-text">
+                <span class="step-n" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3>{t(`steps.${s.id}.title`)}</h3>
+                <p>{t(`steps.${s.id}.text`)}</p>
+              </div>
+              <div class="frame">
+                <Screenshot scene={s.scene} alt={t(`steps.${s.id}.shot`)} sizes="(min-width: 1180px) 720px, 100vw" />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="note">{t('steps.note')}</p>
+    </div>
+  </section>
+
+  <section class="section narrow" aria-labelledby="narrow-title">
+    <div class="wrap narrow-row">
+      <div>
+        <h2 id="narrow-title">{t('narrow.title')}</h2>
+        <p class="section-lead">{t('narrow.text')}</p>
+      </div>
+      <div class="frame phone">
+        <Screenshot scene="phone" alt={t('narrow.shot')} sizes="390px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="values-title">
+    <div class="wrap">
+      <h2 id="values-title">{t('values.title')}</h2>
+      <ul class="cards">
+        {
+          values.map((v) => (
+            <li class="card">
+              <h3>{t(`values.${v}.title`)}</h3>
+              <p>{t(`values.${v}.text`)}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="status" aria-labelledby="status-title">
+    <div class="wrap">
+      <h2 id="status-title">{t('status.title')}</h2>
+      <p class="section-lead">{t('status.lead')}</p>
+      <ol class="road">
+        {
+          road.map((r) => (
+            <li class={`road-item is-${r.state}`}>
+              <span class="road-state">{t(`status.${r.state}`)}</span>
+              <span>{t(r.key)}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p><a href={LINKS.plan} rel="external">{t('status.plan')}</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="community" aria-labelledby="community-title">
+    <div class="wrap">
+      <h2 id="community-title">{t('community.title')}</h2>
+      <p class="section-lead">{t('community.lead')}</p>
+      <ul class="cards repos">
+        {
+          repos.map((r) => (
+            <li class="card">
+              <h3>
+                <a href={r.href} rel="external">
+                  <span class="mono">freekerf/</span>
+                  {r.name}
+                </a>
+              </h3>
+              <p>{t(r.key)}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="actions">
+        <a class="btn btn-primary" href={download}>{t('hero.download')}</a>
+        <a class="btn" href={LINKS.issues} rel="external">{t('community.issue')}</a>
+      </p>
+    </div>
+  </section>
+</Base>
