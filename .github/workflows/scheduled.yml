@@ -1,0 +1,39 @@
+name: Scheduled checks
+
+# What CI never does: the live GitHub releases API and external links.
+on:
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: the live releases API parses
+        run: |
+          curl -fsSL -H "authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/freekerf/freekerf/releases?per_page=20" > live.json
+          node --input-type=module -e "import {readFileSync} from 'node:fs'; import {parseReleases} from './src/lib/releases.ts'; console.log(parseReleases(JSON.parse(readFileSync('live.json','utf8'))).length, 'releases')"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run build
+        env:
+          BASE_PATH: /
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: all links, external too
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --root-dir "${{ github.workspace }}/dist" "dist/**/*.html"
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
