@@ -2,7 +2,7 @@
 
 Public website and user documentation for FreeKerf (intended domain: `freekerf.org`, not registered yet).
 
-> **Status: planning.** License: GPL-3.0-or-later (see [NOTICE](NOTICE)). Once work starts, the maintenance guide is [`AGENTS.md`](AGENTS.md) (created in milestone 1) and §7 *Where each item lives* tracks progress.
+> **Status: milestone 1 delivered** (pending the Pages source setting and a green CI). License: GPL-3.0-or-later (see [NOTICE](NOTICE)). The maintenance guide is [`AGENTS.md`](AGENTS.md) and §7 *Where each item lives* tracks progress.
 
 ## 1. What to build
 
@@ -102,8 +102,13 @@ All documentation is in **English** (`README.md`, `AGENTS.md`, `doc/`, commit me
 
 ## 7. Where each item lives
 
-Updated by every PR that delivers a milestone item (empty until milestone 1).
+Updated by every PR that delivers a milestone item.
 
 | Item | Implementation | Tests | Documentation |
 | --- | --- | --- | --- |
 | User documentation drafted (milestone 3 content, ahead of the site): en and pt-BR, the flows of `design/ux.md`, safety, automation, troubleshooting | `src/content/docs/{en,pt-br}/`, `src/content/docs/README.md` | — (site checks come with milestone 1) | `src/content/docs/README.md` |
+| Milestone 1: stack ADR (Astro) | `astro.config.mjs`, `package.json` | `npm run check`, `tests/integration/build.test.ts` | `doc/adr/0001-site-generator.md`, `doc/architecture.md` |
+| Milestone 1: landing, en and pt-BR, with screenshots generated from the app | `src/views/Landing.astro`, `src/i18n/`, `src/lib/i18n.ts`, `scripts/screenshots.mjs`, `src/assets/screenshots/` | `tests/unit/i18n.test.ts`, `tests/integration/build.test.ts`, `tests/e2e/site.spec.ts` | `doc/features/{landing,i18n,theming,screenshots}.md`, `doc/content-guide.md` |
+| Milestone 1: download page (ahead of milestone 4: reads the releases, OS picker, source build fallback) | `src/views/Download.astro`, `src/lib/releases.ts`, `src/data/releases.ts` | `tests/unit/releases.test.ts`, `tests/fixtures/`, integration, e2e | `doc/features/download-picker.md` |
+| Milestone 1: design sync | `scripts/sync-design.mjs`, `scripts/lib/design-sync.mjs`, `design.lock` | `tests/unit/design-sync.test.ts`, CI job `design` | `doc/features/design-sync.md` |
+| Milestone 1: CI and deployment (unit, build, html-validate, links, axe on three engines; GitHub Pages) | `.github/workflows/{ci,deploy,scheduled}.yml` | — | `doc/features/deployment.md`, `doc/adr/0002-hosting.md`, `doc/adr/0003-no-analytics.md`, `doc/roadmap.md` (Lighthouse postponed) |

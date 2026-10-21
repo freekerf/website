@@ -1,0 +1,41 @@
+[
+  {
+    "tag_name": "v0.3.0-beta.1",
+    "name": "FreeKerf 0.3.0 beta 1",
+    "html_url": "https://github.com/freekerf/freekerf/releases/tag/v0.3.0-beta.1",
+    "published_at": "2026-11-20T10:00:00Z",
+    "draft": false,
+    "prerelease": true,
+    "assets": [
+      { "name": "FreeKerf_0.3.0-beta.1_x64-setup.exe", "size": 9437184, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.3.0-beta.1/FreeKerf_0.3.0-beta.1_x64-setup.exe" }
+    ]
+  },
+  {
+    "tag_name": "v0.4.0",
+    "name": "",
+    "html_url": "https://github.com/freekerf/freekerf/releases/tag/v0.4.0",
+    "published_at": "2026-12-01T10:00:00Z",
+    "draft": true,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v0.2.0",
+    "name": "FreeKerf 0.2.0",
+    "html_url": "https://github.com/freekerf/freekerf/releases/tag/v0.2.0",
+    "published_at": "2026-11-02T09:30:00Z",
+    "draft": false,
+    "prerelease": false,
+    "assets": [
+      { "name": "FreeKerf_0.2.0_x64_en-US.msi", "size": 10485760, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_x64_en-US.msi" },
+      { "name": "FreeKerf_0.2.0_x64_en-US.msi.sig", "size": 420, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_x64_en-US.msi.sig" },
+      { "name": "FreeKerf_0.2.0_x64-setup.exe", "size": 9961472, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_x64-setup.exe" },
+      { "name": "FreeKerf_0.2.0_aarch64.dmg", "size": 12582912, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_aarch64.dmg" },
+      { "name": "FreeKerf_0.2.0_x64.dmg", "size": 12800000, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_x64.dmg" },
+      { "name": "FreeKerf_0.2.0_amd64.deb", "size": 8388608, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_amd64.deb" },
+      { "name": "FreeKerf_0.2.0_amd64.AppImage", "size": 83886080, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf_0.2.0_amd64.AppImage" },
+      { "name": "FreeKerf-0.2.0-1.x86_64.rpm", "size": 8500000, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/FreeKerf-0.2.0-1.x86_64.rpm" },
+      { "name": "latest.json", "size": 2048, "browser_download_url": "https://github.com/freekerf/freekerf/releases/download/v0.2.0/latest.json" }
+    ]
+  }
+]
