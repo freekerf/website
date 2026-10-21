@@ -1,0 +1,120 @@
+---
+// The download page (doc/features/download-picker.md). Server-rendered list of
+// every installer of the latest release, grouped by system; a small script marks
+// the visitor's system as recommended. No release: build from source.
+import Base from '../layouts/Base.astro';
+import { releases } from '../data/releases';
+import { formatDate, translator, type Locale } from '../lib/i18n';
+import { formatSize, installersFor, latest, OSES } from '../lib/releases';
+import { LINKS } from '../site';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = translator(locale);
+const all = await releases();
+const release = all ? latest(all) : null;
+const groups = release
+  ? OSES.map((os) => ({ os, installers: installersFor(release, os) })).filter((g) => g.installers.length)
+  : [];
+---
+
+<Base locale={locale} page="download/" title={t('meta.download.title')} description={t('meta.download.description')}>
+  <section class="section page-head">
+    <div class="wrap">
+      <h1>{t('download.title')}</h1>
+      <p class="lead">{t('download.lead')}</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="dl-title">
+    <div class="wrap">
+      {
+        release && groups.length ? (
+          <div data-testid="release">
+            <h2 id="dl-title">
+              {t('download.version', { version: release.version })}
+              {release.prerelease && <span class="badge">{t('download.prerelease')}</span>}
+            </h2>
+            <p class="note">
+              {t('download.published', { date: formatDate(locale, release.publishedAt) })} ·{' '}
+              <a href={release.url} rel="external">
+                {t('download.notes')}
+              </a>
+            </p>
+            <ul class="cards os-list">
+              {groups.map((g) => (
+                <li class="card os-card" data-os={g.os} data-testid={`os-${g.os}`}>
+                  <h3>
+                    {t(`os.${g.os}`)}
+                    <span class="badge recommended" hidden>
+                      {t('download.for')}
+                    </span>
+                  </h3>
+                  <ul class="files">
+                    {g.installers.map((i, n) => (
+                      <li>
+                        <a class={n === 0 ? 'btn btn-primary' : 'btn'} href={i.url} download>
+                          {t(`kind.${i.kind}`)}
+                          {i.arch && g.installers.some((o) => o !== i && o.kind === i.kind) && (
+                            <span class="mono"> {i.arch}</span>
+                          )}
+                        </a>
+                        <span class="size">{formatSize(i.size)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+            <p>
+              <a href={LINKS.releases} rel="external">
+                {t('download.all')}
+              </a>
+            </p>
+          </div>
+        ) : (
+          <div class="card empty" data-testid="no-release">
+            <h2 id="dl-title">{t('download.none.title')}</h2>
+            <p>{all === null ? t('download.offline.text') : t('download.none.text')}</p>
+            <p>
+              <a class="btn" href={LINKS.releases} rel="external">
+                {t('download.releases')}
+              </a>
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="src-title">
+    <div class="wrap">
+      <h2 id="src-title">{t('download.source.title')}</h2>
+      <p>{t('download.source.text')}</p>
+      <pre
+        class="code"
+        tabindex="0"><code>git clone https://github.com/freekerf/freekerf.git
+cd freekerf/ui/web
+npm ci
+npm run build
+cd ../..
+cargo run --release -p freekerf-desktop --features custom-protocol</code></pre>
+      <p><a href={LINKS.guide} rel="external">{t('download.source.more')}</a></p>
+      <p class="safety" role="note">{t('download.safety')}</p>
+    </div>
+  </section>
+
+  <script>
+    import { detectOs } from '../lib/releases';
+
+    const os = detectOs(navigator.userAgent);
+    const card = os && document.querySelector<HTMLElement>(`.os-card[data-os="${os}"]`);
+    if (card) {
+      card.classList.add('is-recommended');
+      card.querySelector<HTMLElement>('.recommended')?.removeAttribute('hidden');
+      card.parentElement?.prepend(card);
+    }
+  </script>
+</Base>
