@@ -1,0 +1,3 @@
+# Commit of freekerf/design that the tokens, fonts and brand files come from.
+# Change it, then run `npm run sync:design` (CI runs it with --check).
+e284367854f6d57ab87aa20ebe306458ac4e0689
