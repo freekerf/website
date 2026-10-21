@@ -1,0 +1,59 @@
+---
+// Logo, main navigation and the language switch (links to the same page in each locale).
+import { LANG_NAME, LANG_TAG, LOCALES, localePath, translator, type Locale } from '../lib/i18n';
+import { LINKS } from '../site';
+import Logo from './Logo.astro';
+
+interface Props {
+  locale: Locale;
+  page: string;
+  /** False: the language links go to each home page (the 404 page). */
+  alternates?: boolean;
+}
+const { locale, page, alternates = true } = Astro.props;
+const t = translator(locale);
+const base = import.meta.env.BASE_URL;
+const home = localePath(locale, '', base);
+---
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href={home} aria-label={t('nav.home')}>
+      <Logo />
+    </a>
+    <nav aria-label={t('nav.label')}>
+      <ul class="nav">
+        <li><a href={`${home}#status`}>{t('nav.status')}</a></li>
+        <li><a href={`${home}#community`}>{t('nav.community')}</a></li>
+        <li>
+          <a href={LINKS.app} rel="external">{t('nav.source')}</a>
+        </li>
+        <li>
+          <a
+            class="btn btn-primary btn-sm"
+            href={localePath(locale, 'download/', base)}
+            aria-current={page === 'download/' ? 'page' : undefined}>{t('nav.download')}</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <ul class="langs" aria-label={t('nav.language')}>
+      {
+        LOCALES.map((l) => (
+          <li>
+            <a
+              href={localePath(l, alternates ? page : '', base)}
+              hreflang={LANG_TAG[l]}
+              lang={LANG_TAG[l]}
+              aria-current={l === locale ? 'true' : undefined}
+              data-testid={`lang-${l}`}
+              title={LANG_NAME[l]}
+            >
+              {l === 'en' ? 'EN' : 'PT'}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>

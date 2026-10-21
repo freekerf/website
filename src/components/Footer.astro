@@ -1,0 +1,23 @@
+---
+// License, credit to the project FreeKerf is based on, trademark and privacy notes.
+import { translator, type Locale } from '../lib/i18n';
+import { LINKS } from '../site';
+import Logo from './Logo.astro';
+
+interface Props {
+  locale: Locale;
+}
+const t = translator(Astro.props.locale);
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <Logo />
+    <ul class="footer-notes">
+      <li><a href={LINKS.license} rel="external">{t('footer.license')}</a></li>
+      <li><a href={LINKS.lasergrbl} rel="external">{t('footer.heritage')}</a></li>
+      <li>{t('footer.trademark')}</li>
+      <li>{t('footer.privacy')}</li>
+    </ul>
+  </div>
+</footer>

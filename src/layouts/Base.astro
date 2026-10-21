@@ -1,0 +1,77 @@
+---
+// Every page: head (meta, hreflang, theme), header, main, footer.
+// The theme follows the system (prefers-color-scheme); without JavaScript the
+// page stays in the dark theme, the brand default (doc/features/theming.md).
+import '../styles/fk-tokens.css';
+import '../styles/site.css';
+
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { LANG_TAG, LOCALES, localePath, translator, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  /** The page without locale, e.g. "download/" ("" = home). */
+  page: string;
+  title: string;
+  description: string;
+  /** Links to the same page in the other locales (false for the 404 page). */
+  alternates?: boolean;
+}
+
+const { locale, page, title, description, alternates = true } = Astro.props;
+const t = translator(locale);
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(localePath(locale, page, base), Astro.site);
+const asset = (p: string) => `${base.replace(/\/$/, '')}/${p}`;
+---
+
+<!doctype html>
+<html lang={LANG_TAG[locale]} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {alternates && <link rel="canonical" href={canonical} />}
+    {
+      alternates &&
+      LOCALES.map((l) => (
+        <link rel="alternate" hreflang={LANG_TAG[l]} href={new URL(localePath(l, page, base), Astro.site)} />
+      ))
+    }
+    {
+      alternates && (
+        <link rel="alternate" hreflang="x-default" href={new URL(localePath('en', page, base), Astro.site)} />
+      )
+    }
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={asset('favicon.ico')} sizes="any" />
+    <link rel="apple-touch-icon" href={asset('brand/freekerf-512.png')} />
+    <link rel="stylesheet" href={asset('fonts/fonts.css')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FreeKerf" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(asset('brand/freekerf-512.png'), Astro.site)} />
+    <meta property="og:locale" content={LANG_TAG[locale].replace('-', '_')} />
+    <script is:inline>
+      (() => {
+        const q = matchMedia('(prefers-color-scheme: light)');
+        const apply = () => (document.documentElement.dataset.theme = q.matches ? 'light' : 'dark');
+        apply();
+        q.addEventListener('change', apply);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{t('skip')}</a>
+    <Header locale={locale} page={page} alternates={alternates} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
