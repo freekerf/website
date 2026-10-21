@@ -1,0 +1,37 @@
+{
+  "name": "freekerf-website",
+  "private": true,
+  "version": "0.1.0",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "description": "FreeKerf website: the landing and the download page (Astro, ADR 0001)",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "validate:html": "html-validate \"dist/**/*.html\"",
+    "sync:design": "node scripts/sync-design.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "dependencies": {
+    "astro": "~7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.11",
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^24.19.2",
+    "@vitest/coverage-v8": "^5.0.5",
+    "html-validate": "^11.17.0",
+    "sharp": "^0.35.5",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.5"
+  }
+}

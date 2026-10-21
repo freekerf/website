@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# copied byte for byte from freekerf/design (npm run sync:design -- --check)
+public/** -text
+src/styles/fk-tokens.css -text
+*.png binary
+*.woff2 binary
+*.ico binary
