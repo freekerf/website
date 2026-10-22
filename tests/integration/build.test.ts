@@ -53,6 +53,7 @@ describe('build with releases', () => {
     expect(doc).not.toContain('.sig"');
     // two .dmg files: their architectures are shown
     expect(doc).toMatch(/arm64/);
+    expect(doc).toContain('Privacy &amp; Security → Open Anyway');
     expect(html(out, 'pt-br/download/')).toContain('Publicada em 2 de novembro de 2026');
   });
 

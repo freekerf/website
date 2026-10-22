@@ -61,7 +61,7 @@ export const en = {
 
   'status.title': 'Where we are',
   'status.lead':
-    'FreeKerf is pre-alpha: it works on the bench, changes every week and has no installers yet. Here is the road.',
+    'FreeKerf is pre-alpha: it works on the bench and changes every week. Development releases come with installers for Linux, Windows and macOS. Here is the road.',
   'status.done': 'Done',
   'status.now': 'In progress',
   'status.next': 'Next',
@@ -93,7 +93,9 @@ export const en = {
   'download.notes': 'Release notes',
   'download.none.title': 'No installers yet',
   'download.none.text':
-    'FreeKerf is pre-alpha. The first installers come with version 1; until then you can build the development version from source.',
+    'FreeKerf is pre-alpha and has no published release right now. You can build the development version from source.',
+  'download.macos.first':
+    'The app is not signed yet. The first time, macOS refuses to open it: choose Done, then System Settings → Privacy & Security → Open Anyway, and confirm with an administrator password.',
   'download.offline.text': 'The list of releases could not be read right now. They are all on GitHub.',
   'download.releases': 'See the releases on GitHub',
   'download.source.title': 'Build from source',

@@ -5,9 +5,15 @@ description: Primeira execução, as boas-vindas, conectar à sua máquina ou ao
 
 ## Instalação
 
-Ainda não há instaladores (eles vêm com o primeiro lançamento). Para experimentar
-o FreeKerf hoje, compile a partir do código seguindo o
-[guia de desenvolvimento](https://github.com/freekerf/freekerf/blob/main/AGENTS.md).
+Baixe o instalador do seu sistema na
+[página de download](https://freekerf.github.io/website/pt-br/download/): Windows
+(.exe ou .msi), macOS (.dmg) ou Linux (AppImage, .deb ou Flatpak). São versões de
+desenvolvimento. O app para macOS ainda não é assinado: na primeira vez, o macOS se
+recusa a abri-lo; escolha *Concluído*, depois **Ajustes do Sistema → Privacidade e
+Segurança → Abrir Mesmo Assim**, e confirme com a senha de um administrador.
+
+Para usar a versão de desenvolvimento mais recente, compile a partir do código
+seguindo o [guia de desenvolvimento](https://github.com/freekerf/freekerf/blob/main/AGENTS.md).
 
 ## As boas-vindas
 

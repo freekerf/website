@@ -61,7 +61,7 @@ export const ptBr: Strings = {
 
   'status.title': 'Onde estamos',
   'status.lead':
-    'O FreeKerf é pré-alfa: funciona na bancada, muda toda semana e ainda não tem instaladores. Este é o caminho.',
+    'O FreeKerf é pré-alfa: funciona na bancada e muda toda semana. As versões de desenvolvimento têm instaladores para Linux, Windows e macOS. Este é o caminho.',
   'status.done': 'Feito',
   'status.now': 'Em andamento',
   'status.next': 'Próximo',
@@ -93,7 +93,9 @@ export const ptBr: Strings = {
   'download.notes': 'Notas da versão',
   'download.none.title': 'Ainda não há instaladores',
   'download.none.text':
-    'O FreeKerf é pré-alfa. Os primeiros instaladores chegam com a versão 1; até lá, você pode compilar a versão de desenvolvimento a partir do código-fonte.',
+    'O FreeKerf é pré-alfa e não tem nenhuma versão publicada agora. Você pode compilar a versão de desenvolvimento a partir do código-fonte.',
+  'download.macos.first':
+    'O app ainda não é assinado. Na primeira vez, o macOS se recusa a abri-lo: escolha Concluído, depois Ajustes do Sistema → Privacidade e Segurança → Abrir Mesmo Assim, e confirme com a senha de um administrador.',
   'download.offline.text': 'Não foi possível ler a lista de versões agora. Todas estão no GitHub.',
   'download.releases': 'Ver as versões no GitHub',
   'download.source.title': 'Compilar do código-fonte',

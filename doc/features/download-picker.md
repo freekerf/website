@@ -15,6 +15,8 @@
 - Per system, the recommended kind comes first (Windows: `.exe`, then `.msi`; Linux:
   AppImage, `.deb`, `.rpm`, Flatpak), x64 before arm64. The architecture is shown when a
   system has two installers of the same kind.
+- The macOS card notes that the app is not signed yet and how to open it the first
+  time (*Open Anyway* in Privacy & Security).
 - **Without JavaScript** every system is listed. With it, `detectOs(navigator.userAgent)`
   moves the visitor's system first and marks it *For your system*; phones and unknown
   systems get the plain list.

@@ -3,9 +3,9 @@ title: FreeKerf user guide
 description: Design laser jobs and drive your laser machine with FreeKerf, the successor of LaserGRBL.
 ---
 
-> **Draft, pre-alpha.** FreeKerf is not released yet: there are no installers, and
-> things change from week to week. These pages describe the desktop app as it is
-> in the development version.
+> **Draft, pre-alpha.** FreeKerf has development releases only
+> ([download](https://freekerf.github.io/website/download/)), and things change from week
+> to week. These pages describe the desktop app as it is in the development version.
 
 FreeKerf designs jobs and drives laser machines running Grbl, grblHAL, Smoothie,
 Marlin or VigoWork. It is free software (GPL-3.0-or-later) and the successor of

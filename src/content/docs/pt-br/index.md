@@ -3,9 +3,10 @@ title: Guia do usuário do FreeKerf
 description: Projete trabalhos a laser e controle sua máquina com o FreeKerf, o sucessor do LaserGRBL.
 ---
 
-> **Rascunho, pré-alfa.** O FreeKerf ainda não foi lançado: não há instaladores, e
-> as coisas mudam de uma semana para outra. Estas páginas descrevem o app desktop
-> como ele está na versão de desenvolvimento.
+> **Rascunho, pré-alfa.** O FreeKerf tem apenas versões de desenvolvimento
+> ([download](https://freekerf.github.io/website/pt-br/download/)), e as coisas mudam de uma
+> semana para outra. Estas páginas descrevem o app desktop como ele está na versão
+> de desenvolvimento.
 
 O FreeKerf projeta trabalhos e controla máquinas a laser com Grbl, grblHAL,
 Smoothie, Marlin ou VigoWork. É software livre (GPL-3.0-or-later) e o sucessor do
