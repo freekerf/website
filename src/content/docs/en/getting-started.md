@@ -5,9 +5,15 @@ description: First run, the welcome, connecting to your machine or to the built-
 
 ## Installing
 
-There are no installers yet (they come with the first release). To try FreeKerf
-today, build it from source by following the
-[developer guide](https://github.com/freekerf/freekerf/blob/main/AGENTS.md).
+Download the installer for your system from the
+[download page](https://freekerf.github.io/website/download/): Windows (.exe or
+.msi), macOS (.dmg) or Linux (AppImage, .deb or Flatpak). These are development
+releases. The macOS app is not signed yet: the first time, macOS refuses to open
+it; choose *Done*, then **System Settings → Privacy & Security → Open Anyway**,
+and confirm with an administrator password.
+
+To run the latest development version instead, build it from source by following
+the [developer guide](https://github.com/freekerf/freekerf/blob/main/AGENTS.md).
 
 ## The welcome
 
